@@ -1,0 +1,136 @@
+﻿@model ERP.ViewModels.AccountViewModel
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_Layout";
+    decimal totalcridit = 0;
+    decimal totaldepit = 0;
+    decimal total = totalcridit - totaldepit;
+
+}
+
+
+
+
+<form asp-controller="Home" asp-action="Details" asp-route-AccountId="@Model.Account.AccountId" method="post">
+    <div class="form-group row">
+        <div class="col-md-6">
+            <label>Clients</label>
+            <input disabled value=" @Model.Account.AcNameAr" name="AccountId" type="text" class="form-control" />
+        </div>
+        <div class="col-md-6">
+            <label>Total</label>
+            <input disabled value=" @total" type="text" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group row">
+
+        <div class="col-md-6">
+            <label>Data From</label>
+            <input name="fromdate" type="date" class="form-control" />
+        </div>
+        <div class="col-md-6">
+            <label>Data To</label>
+            <input name="todate" type="date" class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group row">
+
+        <div class="col-md-6">
+            <input class="btn btn-primary" value="Show Details" type="submit" />
+        </div>
+        <div class="col-md-6">
+
+        </div>
+    </div>
+
+</form>
+
+
+<div class="col-md-12">
+    <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th class="th-sm">
+                    Id
+
+                </th>
+                <th class="th-sm">
+                    Date
+
+                </th>
+                <th class="th-sm">
+                    Note
+
+                </th>
+
+                <th class="th-sm">
+                    Dibt
+
+                </th>
+                <th class="th-sm">
+                    cridt
+
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.AccJournalDetails != null)
+            {
+                foreach (var item in Model.AccJournalDetails)
+                {
+                    <tr>
+                        <td>@item.JdetailId</td>
+                        <td>@item.DueDate</td>
+                        <td>@item.Notes</td>
+                        <td>@item.Debit</td>
+                        <td>@item.Credit</td>
+
+                    </tr>
+                    totaldepit += item.Debit;
+                    totalcridit += item.Credit;
+                }
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th class="th-sm">
+
+
+                </th>
+                <th class="th-sm">
+
+
+                </th>
+                <th class="th-sm">
+
+
+                </th>
+                <th class="th-sm">
+                    @totaldepit
+
+                </th>
+                <th class="th-sm">
+
+                    @totalcridit
+                </th>
+
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+
+@section Scripts
+{
+    <script>
+        // Basic example
+        $(document).ready(function () {
+            $('#dtBasicExample').DataTable({
+                "pagingType": "simple" // "simple" option for 'Previous' and 'Next' buttons only
+            });
+            $('.dataTables_length').addClass('bs-select');
+        });
+
+    </script>
+}
