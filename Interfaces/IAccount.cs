@@ -11,6 +11,6 @@ namespace ERP.Interfaces
      IEnumerable<AccAccount> GetAccAccounts();
         IEnumerable<AccJournalDetail> getDetailts(int accountid, DateTime fromdate , DateTime todate);
 
-        AccAccount GetAccAccount(int id);
+        IEnumerable<AccAccount> GetAccAccount(int id);
     }
 }

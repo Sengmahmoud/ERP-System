@@ -1,14 +1,14 @@
 ﻿@model ERP.ViewModels.UserRoleViewModel
 
-<h2>Add user to role</h2>
+<h2>اضافة صلاحية إلى المستخدم</h2>
 
 <form asp-controller="Admin" asp-action="AddUserToRole" method="post">
     <input type="hidden" name="roleId" value="@Model.RoleId" />
     <select asp-for="UserId"
             asp-items="@(new SelectList(Model.Users, "Id", "UserName"))">
-        <option>Please select a user</option>
+        <option>اختر المستخدم</option>
     </select>
-    <input class="btn btn-primary" value="Add to role" type="submit" />
+    <input class="btn btn-primary" value="حفظ" type="submit" />
 </form>
 
-<a asp-action="RolesManagement" class="btn btn-primary">Done</a>
+<a asp-action="RolesManagement" class="btn btn-danger">الغاء</a>

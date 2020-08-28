@@ -38,18 +38,26 @@ namespace ERP.Controllers
            
             return View(model);
         }
-
-        [Authorize(Roles = "Administrators, Employees")]
         [HttpPost]
-     ///   [Route("Home/Index")]
+        [Authorize(Roles = "Administrators, Employees , Users")]
         public string Index(int AccountId , DateTime fromdate , DateTime todate)
-        {
+            {
             try
             {
-               
-            
-                var details = _account.getDetailts(AccountId,fromdate,todate);
               
+                var details = _account.getDetailts(AccountId,fromdate,todate);
+                foreach (var item in details)
+                {
+                    if (item.Credit==0 )
+                    {
+                        item.Credit = null;
+                     
+                    }
+                    if (item.Debit==0)
+                    {
+                        item.Debit = null;
+                    }
+                }
                    
            String jsonResult = JsonConvert.SerializeObject(details);
                 return jsonResult;
@@ -67,40 +75,14 @@ namespace ERP.Controllers
             var account = _account.GetAccAccount(AccountId);
             var model = new AccountViewModel()
             {
-               Account=account
+               Accounts=account
 
             };
 
 
             return View(model);
         }
-        [Authorize(Roles = "Users")]
-        [HttpPost]
-        [Route("Home/Details/{AccountId}")]
-        public IActionResult Details(int AccountId, DateTime fromdate, DateTime todate)
-        {
-            try
-            {
-
-                var account = _account.GetAccAccount(AccountId);
-                var details = _account.getDetailts(AccountId, fromdate, todate);
-                var model = new AccountViewModel()
-                {
-                    Account = account,
-                    AccJournalDetails = details
-
-
-                };
-                return View(model);
-            }
-
-            catch
-            {
-                return Content("error");
-            }
-
-        }
-
+      
         public IActionResult Privacy()
         {
             return View();

@@ -4,7 +4,7 @@
 @inject UserManager<ApplicationUser> usermanager
 
 <!DOCTYPE html>
-<html lang="en">
+<html dir="rtl" lang="ar">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -29,19 +29,17 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">الرئيسة</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                       
                         @if (signinmanager.IsSignedIn(User) && User.IsInRole("Administrators"))
 
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Admin" asp-action="UsersManangement">User Management</a>
+                                <a class="nav-link text-dark" asp-controller="Admin" asp-action="UsersManangement">ادارة المستخدمين</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="Admin" asp-action="RolesManagement">Roles Management</a>
+                                <a class="nav-link text-dark" asp-controller="Admin" asp-action="RolesManagement">الصلاحيات</a>
                             </li>
 
                         }
@@ -58,9 +56,11 @@
                             @*@if (User.IsInRole("Administrators"))
                                 {*@
 
-                            <li class="nav-item"> Hello @usermanager.GetUserName(User)</li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" href="javascript:document.getElementById('LogoutForm').submit()">Logout</a>
+                                <a class="nav-link text-dark" asp-controller="Account" asp-action="ChangePassword" > Hello @usermanager.GetUserName(User)</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="javascript:document.getElementById('LogoutForm').submit()">تسجيل خروج</a>
                             </li>
                         </ul>
 
@@ -73,7 +73,7 @@
 
 
                         <li>
-                            <a id="loginLink" asp-controller="Account" asp-action="Login">Login</a>
+                            <a id="loginLink" asp-controller="Account" asp-action="Login">تسجيل دخول</a>
                         </li>
 
                     </ul>
@@ -90,7 +90,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2020 - ERP - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2020 - ERP 
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

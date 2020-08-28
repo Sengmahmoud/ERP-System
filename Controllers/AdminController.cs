@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ERP.Auth;
+using ERP.Interfaces;
 using ERP.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -18,11 +19,13 @@ namespace ERP.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IAccount _account;
 
-        public AdminController(UserManager<ApplicationUser>userManager, RoleManager<IdentityRole> roleManager)
+        public AdminController(UserManager<ApplicationUser>userManager, RoleManager<IdentityRole> roleManager,IAccount account)
         {
             _userManager = userManager;
             _roleManager = roleManager;
+            _account = account;
         }
         // GET: /<controller>/
         public IActionResult Index()
@@ -39,7 +42,12 @@ namespace ERP.Controllers
         [Route("Admin/AddUser")]
         public IActionResult AddUser()
         {
-            return View();
+            var accounts = _account.GetAccAccounts();
+            var model = new AddUserViewModel()
+            {
+                AccAccounts = accounts
+            };
+            return View(model);
         }
         [HttpPost]
         [Route("Admin/AddUser")]
@@ -53,11 +61,13 @@ namespace ERP.Controllers
             var user = new ApplicationUser()
             {
                 UserName = model.UserName,
-                Email = model.Email
-
+                Email = model.Email,
+                AccAcountId=model.AccountId
+                
+                
             };
 
-            IdentityResult result = await _userManager.CreateAsync(user, model.Password);
+            IdentityResult result = await _userManager.CreateAsync(user, model.Password );
             if (result.Succeeded)
             {
                 return RedirectToAction("UsersManangement", _userManager.Users);

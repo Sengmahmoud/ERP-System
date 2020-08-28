@@ -10,8 +10,10 @@ namespace ERP.ViewModels
     {
         public string id { get; set; }
         [Required]
+        [Display(Name ="اسم المستخدم")]
         public string UserName { get; set; }
         // [Required]
+        [Display(Name ="البريد الالكترونى")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
  

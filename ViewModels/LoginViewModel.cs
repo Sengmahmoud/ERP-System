@@ -9,9 +9,11 @@ namespace ERP.ViewModels
     public class LoginViewModel
     {
         [Required]
+        [Display(Name = "أسم المستخدم")]
         public string UserName { get; set; }
         [Required]
         [DataType(DataType.Password)]
+        [Display(Name = "كلمة السر")]
         public string Password { get; set; }
     }
 }

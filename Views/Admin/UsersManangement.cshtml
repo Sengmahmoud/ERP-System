@@ -5,30 +5,30 @@
 <h2>User Management</h2>
 @if (!Model.Any())
 {
-    <h2>there is no users</h2>
+    <h2>لم يتم اضافة مستخدمين بعد </h2>
 }
 else
 {
-    <table class="table table-condensed table-bordered" header header-content="User Management">
+    <table class="table table-condensed table-bordered" header header-content="ادارة المستخدمين">
         <tr>
-            <th>User ID</th>
-            <th>User name</th>
-            <th>Email</th>
-            <th>Actions</th>
+            
+            <th>اسم المستخدم</th>
+            <th>البريد الالكترونى</th>
+            <th>#</th>
         </tr>
 
         @foreach (IdentityUser user in Model)
         {
             <tr>
-                <td>@user.Id</td>
+                
                 <td>@user.UserName</td>
                 <td>@user.Email</td>
 
                 <td>
                     <form asp-action="DeleteUser" asp-route-id="@user.Id" method="post">
-                        <a class="btn btn-sm btn-primary" asp-action="EditUser" asp-route-id="@user.Id">Edit</a>
-                        <button type="submit" onclick="return confirm('Do you really want to delete this user?');" class="btn btn-sm btn-danger">
-                            Delete
+                        <a class="btn btn-sm btn-primary" asp-action="EditUser" asp-route-id="@user.Id">تعديل</a>
+                        <button type="submit" onclick="return confirm('هل أنت متأكد من انك تريد حذف هذا المستخدم');" class="btn btn-sm btn-danger">
+                            حذف
                         </button>
                     </form>
                 </td>
@@ -38,6 +38,6 @@ else
 }
 
 <p>
-    <a class="btn btn-primary" asp-action="AddUser">Add new user</a>
+    <a class="btn btn-primary" asp-action="AddUser">اضافة مستخدم جديد</a>
     @*<a anchor-style="primary" asp-action="AddUser">Add new user</a>*@
 </p>

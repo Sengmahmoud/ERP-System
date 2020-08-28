@@ -59,6 +59,39 @@ namespace ERP.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Login");
         }
+        // GET: /Manage/ChangePassword
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Manage/ChangePassword
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
+        {
+            
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var user =await _userManager.FindByNameAsync(model.UserName);
+            var result = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
+            if (result.Succeeded)
+            {
+                 user = await _userManager.FindByIdAsync(user.Id);
+                if (user != null)
+                {
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                }
+                return RedirectToAction("Index", "Home");
+            }
+         ModelState.AddModelError("","somthung error");
+            return View(model);
+        }
+
 
     }
 }

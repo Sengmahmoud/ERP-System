@@ -5,15 +5,15 @@
 
 @if (!Model.Any())
 {
-    <tr><td colspan="3" class="text-center">No roles defined yet. Please create the first role.</td></tr>
+    <tr><td colspan="3" class="text-center">لم يتم اضافة اصلاحيات بعد</td></tr>
 }
 else
 {
     <table class="table table-condensed table-bordered">
         <tr>
-            <th>Role ID</th>
-            <th>Role name</th>
-            <th>#Users</th>
+            <th>م</th>
+            <th>الصلاحية</th>
+            <th>المستخدمين</th>
         </tr>
         @foreach (var role in Model)
         {
@@ -22,9 +22,9 @@ else
                 <td>@role.Name</td>
                 <td>
                     <form asp-action="DeleteRole" asp-route-Id="@role.Id" method="post">
-                        <a class="btn btn-sm btn-primary" asp-action="EditRole" asp-route-Id="@role.Id">Edit</a>
-                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Do you really want to delete this role?');">
-                            Delete
+                        <a class="btn btn-sm btn-primary" asp-action="EditRole" asp-route-Id="@role.Id">تعديل</a>
+                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('هل انت متأكد من انك تريد حذف هذا الدور');">
+                            حذف
                         </button>
                     </form>
                 </td>
@@ -32,6 +32,3 @@ else
         }
     </table>
 }
-<p>
-    <a class="btn btn-primary" asp-action="AddRole">Add new role</a>
-</p>

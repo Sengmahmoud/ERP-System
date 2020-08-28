@@ -1,9 +1,9 @@
 ﻿@model ERP.ViewModels.EditUserViewModel
 
-<h2>Update user</h2>
+<h2>تعديل يانات مستخدم</h2>
 
 <form asp-controller="Admin" asp-action="EditUser" method="post" class="form-horizontal" role="form">
-    <h4>Enter the user details below</h4>
+    
     <hr />
     <div asp-validation-summary="All" class="text-danger"></div>
 
@@ -32,8 +32,8 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-primary" value="Save user" />
-            <a asp-action="UsersManangement" class="btn btn-primary">Cancel</a>
+            <input type="submit" class="btn btn-primary" value="حفظ" />
+            <a asp-action="UsersManangement" class="btn btn-primary">الغاء</a>
         </div>
     </div>
 </form>

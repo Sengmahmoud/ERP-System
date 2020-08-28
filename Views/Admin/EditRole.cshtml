@@ -1,9 +1,9 @@
 ﻿@model ERP.ViewModels.EditRoleViewModel
 
-<h2>Edit role</h2>
+<h2>تعديل الصلاحية</h2>
 
 <form asp-controller="Admin" asp-action="EditRole" method="post" class="form-horizontal" role="form">
-    <h4>You can change the role details below</h4>
+    <h4>التفاصيل الجديدة</h4>
     <hr />
     <div asp-validation-summary="All" class="text-danger"></div>
 
@@ -25,13 +25,13 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-primary" value="Save role" />
-            <a asp-action="RolesManagement" class="btn btn-primary">Cancel</a>
+            <input type="submit" class="btn btn-primary" value="حفظ" />
+            <a asp-action="RolesManagement" class="btn btn-danger">الغاء</a>
         </div>
     </div>
 </form>
 
-<h3>Users in this role</h3>
+<h3>المستخدمون داخل هذا الدور</h3>
 @if (Model.Users != null)
 {
 <ul>
@@ -43,5 +43,5 @@
     }
 </ul>
 }
-<a asp-action="AddUserToRole" asp-route-roleId="@Model.Id" class="btn btn-primary">Add users to role</a>
-<a asp-action="DeleteUserFromRole" asp-route-roleId="@Model.Id" class="btn btn-primary">Remove users from role</a>
+<a asp-action="AddUserToRole" asp-route-roleId="@Model.Id" class="btn btn-primary">اضافة مستخدم إلى هذا الدور</a>
+<a asp-action="DeleteUserFromRole" asp-route-roleId="@Model.Id" class="btn btn-primary">ازالة مستخدم من الدور</a>

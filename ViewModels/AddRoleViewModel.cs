@@ -9,7 +9,7 @@ namespace ERP.ViewModels
     public class AddRoleViewModel
     {
         [Required]
-        [Display(Name = "Role Name")]
+        [Display(Name = "الصلاحية")]
         public string RoleName { get; set; }
     }
 }

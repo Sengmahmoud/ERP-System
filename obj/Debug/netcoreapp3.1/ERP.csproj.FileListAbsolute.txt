@@ -139,3 +139,4 @@ D:\bacup\Projects\ERP\ERP\obj\Debug\netcoreapp3.1\Razor\Views\Admin\AddUserToRol
 D:\bacup\Projects\ERP\ERP\obj\Debug\netcoreapp3.1\Razor\Views\Admin\EditRole.cshtml.g.cs
 D:\bacup\Projects\ERP\ERP\obj\Debug\netcoreapp3.1\Razor\Views\Admin\RolesManagement.cshtml.g.cs
 D:\bacup\Projects\ERP\ERP\obj\Debug\netcoreapp3.1\Razor\Views\Home\Details.cshtml.g.cs
+D:\bacup\Projects\ERP\ERP\obj\Debug\netcoreapp3.1\Razor\Views\Account\ChangePassword.cshtml.g.cs
